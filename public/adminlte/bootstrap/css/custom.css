@@ -1,0 +1,7 @@
+.my_message{
+	height: 55px;
+	width: 400px;
+	position: fixed;
+	top:50px;
+	z-index: +999999;
+}

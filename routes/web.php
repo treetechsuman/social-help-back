@@ -11,6 +11,27 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index');
+/*
+|--------------------------------------------------------------------------
+| Dashboard Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'admin'], function() { 
+	Route::get('/dashboard','Dashboard\DashboardController@index'); 
+	Route::get('/logout','Dashboard\DashboardController@logout'); 
+}); 
+/*
+|--------------------------------------------------------------------------
+| Frontend Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/', 'FrontendPageController@index'); 
+Route::get('/home', 'FrontendPageController@index'); 
+Route::get('/about', 'FrontendPageController@about'); 
