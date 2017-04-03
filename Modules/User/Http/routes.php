@@ -51,6 +51,10 @@ Route::group(['middleware' => 'web','prefix' => 'admin/user','namespace' => 'Mod
 	});
 	Route::get('/assign-role/{user_id}','UserController@assignRole');
 	Route::post('/assign-role/','UserController@storeAssignRole'); 
+
+	Route::get('/email-templete/{templete_name?}','UserController@emailTemplete');
+
+	Route::post('/activate-user/','UserController@activateuser'); 
 }); 
 /*
 |--------------------------------------------------------------------------

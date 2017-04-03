@@ -90,6 +90,4 @@ class UserEloquent implements UserRepository{
     	$this->user->findorfail($attributes['user_id'])->update($attributes);
     }
 
-
-
 }

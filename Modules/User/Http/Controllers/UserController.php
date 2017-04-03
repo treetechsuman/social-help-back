@@ -10,6 +10,9 @@ use Modules\User\Repositories\UserRepository;
 use Modules\User\Repositories\UserDetailRepository;
 use Modules\User\Repositories\RolePermissionRepository;
 use Modules\User\Events\UserCreated;
+use Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use Session;
 
 
@@ -91,6 +94,32 @@ class UserController extends Controller{
     	$this->userRepo->changePassword($request->all());
     	Session::flash('success','Password Changed for this user');
 		return back();
+    }
+
+    public function emailTemplete($templete_name=''){
+    	if($templete_name == ''){
+    		$templete_name = 'welcome';
+    	}
+    	$myuser=array();
+    	$myuser['name'] = 'dummy name';
+    	return view('user::email.email-templete-list',compact('templete_name','myuser'));
+    }
+
+    public function activateUser(Request $request){
+    	//return $request->all();
+    	$user_id = base64_decode($request['activation_code']);
+    	$data['status']='Active';
+    	$data['user_id']=$user_id;
+    	try{
+	    	$this->userDetailRepo->getUserDetailById($user_id);
+    	}catch(Exception $e){
+	    	//if ($e instanceof NotFoundHttpException)
+			{
+			    $this->userDetailRepo->createUserDetail($data);
+			    //dd($data);
+			}
+		}	
+    	return 'account is acitvated redirect where you like';
     }
 
 }

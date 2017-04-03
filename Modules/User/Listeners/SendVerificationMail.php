@@ -7,9 +7,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 use Modules\User\Emails\VerificationMail;
+use Modules\User\Repositories\UserTrait;
 
 class SendVerificationMail
 {
+    use UserTrait;
     /**
      * Create the event listener.
      *
@@ -28,9 +30,9 @@ class SendVerificationMail
      */
     public function handle(UserCreated $event)
     {
+        $activation_code = SendVerificationMail::generateVerificationCode($event->user['id']);
         Mail::to('me.suman11@gmail.com')
-        ->send(new VerificationMail());
+        ->send(new VerificationMail($event->user,$activation_code));
         dd($event->user);
-
     }
 }
