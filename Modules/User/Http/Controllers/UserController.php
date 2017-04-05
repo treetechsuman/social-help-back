@@ -101,8 +101,9 @@ class UserController extends Controller{
     		$templete_name = 'welcome';
     	}
     	$myuser=array();
+    	$activation_code = 'dummyCode';
     	$myuser['name'] = 'dummy name';
-    	return view('user::email.email-templete-list',compact('templete_name','myuser'));
+    	return view('user::email.email-templete-list',compact('templete_name','myuser','activation_code'));
     }
 
     public function activateUser(Request $request){
@@ -120,6 +121,10 @@ class UserController extends Controller{
 			}
 		}	
     	return 'account is acitvated redirect where you like';
+    }
+
+    public function socialLogin(){
+    	return view('user::user.social-login');
     }
 
 }

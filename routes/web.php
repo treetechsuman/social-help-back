@@ -25,7 +25,7 @@ Auth::routes();
 */
 Route::group(['prefix' => 'admin'], function() { 
 	Route::get('/dashboard','Dashboard\DashboardController@index'); 
-	Route::get('/logout','Dashboard\DashboardController@logout'); 
+	Route::get('/logout','Dashboard\DashboardController@logout');
 }); 
 /*
 |--------------------------------------------------------------------------

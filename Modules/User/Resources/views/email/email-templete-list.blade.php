@@ -17,6 +17,7 @@ Email templete
 				<div class="btn-group">
 					<a href="{{url('admin/user/email-templete/')}}" class="btn btn-default">Welcome</a>
 					<a href="{{url('admin/user/email-templete/survey')}}" class="btn btn-default">Survey</a>
+					<a href="{{url('admin/user/email-templete/password-reset')}}" class="btn btn-default">Password Reset</a>
 				</div>
 			</div>
 		</div>

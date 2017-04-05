@@ -53,8 +53,12 @@ Route::group(['middleware' => 'web','prefix' => 'admin/user','namespace' => 'Mod
 	Route::post('/assign-role/','UserController@storeAssignRole'); 
 
 	Route::get('/email-templete/{templete_name?}','UserController@emailTemplete');
+	Route::get('/social-login/{templete_name?}','UserController@socialLogin');
 
-	Route::post('/activate-user/','UserController@activateuser'); 
+	Route::post('/activate-user/','UserController@activateuser');
+
+	Route::get('{provider}', 'SocialAuthController@redirectTo');
+	Route::get('{provider}/callback', 'SocialAuthController@handleCallback'); 
 }); 
 /*
 |--------------------------------------------------------------------------

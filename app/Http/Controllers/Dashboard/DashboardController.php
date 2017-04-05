@@ -22,4 +22,8 @@ class DashboardController extends Controller{
 		return redirect('/login');
 	}
 
+	public function forget(){
+		return view('backend.auth.forgetpassword');
+	}
+
 }
