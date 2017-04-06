@@ -112,7 +112,7 @@
 									<label for="dob" {{ $errors->has('dob') ? ' has-error' : '' }}>Dob:</label>
 								</div>
 								<div class="col-md-9">
-									<input type="text" class="form-control" id="dob" placeholder="Enter dob" name="dob" value="{{$userDetail['dob']}}" required>
+									<input type="date" class="form-control" id="dob" placeholder="Enter dob" name="dob" value="{{$userDetail['dob']}}" required>
 									@if ($errors->has('dob'))
 										<span class="help-block" style="color: #cc0000">
 											<strong> * {{ $errors->first('dob') }}</strong>
@@ -146,7 +146,7 @@
 									<label for="image" {{ $errors->has('image') ? ' has-error' : '' }}>Change:</label>
 								</div>
 								<div class="col-md-9">
-									<input type="file" class="form-control" id="image" placeholder="Enter image" name="image"  required>
+									<input type="file" class="form-control" id="image" placeholder="Enter image" name="image">
 									@if ($errors->has('image'))
 										<span class="help-block" style="color: #cc0000">
 											<strong> * {{ $errors->first('image') }}</strong>
@@ -160,9 +160,21 @@
 								</div>
 								<div class="col-md-9">
 								<input type="hidden"  name="user_id" value="{{$myuser}}" >
+								<input type="hidden"  name="type" value="{{$userDetail['type']}}" >
 									<select name="status" class="form-control">
 										<option value="Active" @if($userDetail['status']=='Active') selected="selected" @endif >Active</option>
 										<option value="Inactive" @if($userDetail['status']=='Inactive') selected="selected" @endif >Inactive</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-3">
+									<label for="type" {{ $errors->has('type') ? ' has-error' : '' }}>User Type:</label>
+								</div>
+								<div class="col-md-9">
+									<select name="type" class="form-control">
+										<option value="fornt" @if($userDetail['type']=='fornt') selected="selected" @endif >Front</option>
+										<option value="back" @if($userDetail['type']=='back') selected="selected" @endif >Back</option>
 									</select>
 								</div>
 							</div>
@@ -252,6 +264,7 @@
 							</div>
 							<div class="col-md-9">
 							<input type="hidden"  name="user_id" value="{{$myuser}}" >
+							<input type="hidden"  name="type" value="back" >
 								<select name="status" class="form-control">
 									<option value="Active" @if(old('status')=='Active') selected="selected" @endif >Active</option>
 									<option value="Inactive" @if(old('status')=='Inactive') selected="selected" @endif >Inactive</option>

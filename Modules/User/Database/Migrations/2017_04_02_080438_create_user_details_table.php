@@ -19,6 +19,7 @@ class CreateUserDetailsTable extends Migration {
 			$table->string('address');
 			$table->string('image');
 			$table->enum('status',['Active','Inactive']);
+			$table->enum('type',['front','back']);
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();

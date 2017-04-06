@@ -31,8 +31,14 @@ User List
 							<td>{{$user['name']}}</td>
 							<td>{{$user['email']}}</td>
 							<td>
+								<?php $isSuperAdmin =false; ?>
 								@foreach($userRepo->getRoleByUserId($user['id']) as $role)
 								{{$role['name']}},
+								<?php
+									if($role['name']=="SuperAdmin"){
+										$isSuperAdmin =true;
+									}
+								?>
 								@endforeach
 							</td>
 							<td>
@@ -40,8 +46,9 @@ User List
 								<a href="{{url('admin/user/user/manage-user/'.$user['id'])}}" data-toggle="tooltip" title="Manage" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
 
 								<a href="{{url('admin/user/user/'.$user['id'].'/edit')}}" data-toggle="tooltip" title="Edit" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
-
+								@if(!$isSuperAdmin)
 								<a href="{{url('admin/user/user/delete/'.$user['id'])}}" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
+								@endif
 								</div>
 							</td>
 						</tr>

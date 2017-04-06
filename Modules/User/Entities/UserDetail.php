@@ -13,6 +13,7 @@ class UserDetail extends Model{
 				'address',
 				'image',
 				'status',
+				'type',
 				'user_id',
 			];
 	protected $hidden=[
